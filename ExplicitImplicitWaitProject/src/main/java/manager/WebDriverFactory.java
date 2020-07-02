@@ -25,6 +25,20 @@ public class WebDriverFactory {
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
         }
+        else if (browserType.toUpperCase().equals(DriverType.INCOGNITO.name())){
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--incognito");
+            options.addArguments("test-type");
+            //options.addArguments("start-maximized");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--ignore-certificate-errors");
+            options.addArguments("--enable-precise-memory-info");
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--disable-default-apps");
+            options.addArguments("test-type=browser");
+            driver = new ChromeDriver(options);
+        }
         else {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();

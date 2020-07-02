@@ -4,4 +4,5 @@ public enum DriverType {
     CHROME,
     FIREFOX,
     HEADLESS,
+    INCOGNITO,
 }

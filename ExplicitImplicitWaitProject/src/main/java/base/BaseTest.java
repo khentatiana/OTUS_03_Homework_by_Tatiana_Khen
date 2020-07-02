@@ -4,6 +4,7 @@ import manager.WebDriverFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class BaseTest {
 
     protected static WebDriver driver;
+    protected static WebDriverWait wait;
     protected static Logger logger = LogManager.getLogger(BaseTest.class);
 
 
@@ -25,8 +27,10 @@ public abstract class BaseTest {
         logger.info("{} driver is created ", browserType);
         System.out.println("======New driver " + browserType + " is created======");
         if (driver != null) {
-            driver.manage().window().maximize();
+            wait = new WebDriverWait(driver, 30);
             driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
+            driver.manage().window().maximize();
         }
     }
 

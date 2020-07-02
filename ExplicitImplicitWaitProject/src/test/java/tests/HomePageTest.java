@@ -41,7 +41,8 @@ public class HomePageTest extends BaseTest {
         //Call openYandexMobilePage method
         openYandexMobilePage();
         searchTest();
-        sortSearchResults();
+        searchResults();
+        sortSearchResultsByPrice();
 
     }
     public static void openYandexMobilePage(){
@@ -61,16 +62,22 @@ public class HomePageTest extends BaseTest {
         logger.info("Key words entered are CORRECT");
 
     }
-    public static void sortSearchResults(){
-        List<WebElement> searchResultList = driver.findElements(By.className("_2Qo3ODl0by cia-vs"));
+    public static void searchResults(){
+        List<WebElement> searchResultList = driver.findElements(By.className("cia-vs"));
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(dr -> searchResultList.size() > 0);
-        System.out.println(searchResultList);
+        System.out.println("================="+ searchResultList.size() + "=================");
+        Assert.assertEquals(searchResultList.size(),71 );
+        logger.info("List of search results are CORRECT {}", searchResultList.size());
+        }
+public static void sortSearchResultsByPrice(){
+    WebElement byPrice = driver.findElement(By.xpath("//*[@data-autotest-id='dprice']"));
+    byPrice.click();
+    String text = byPrice.getText();
+    System.out.println(text);
+    Assert.assertEquals(text, "по цене");
+    logger.info("Found tab по цене");
 
-
-        logger.info("List of search results {}", searchResultList );
-
-    }
-
+}
 
 }

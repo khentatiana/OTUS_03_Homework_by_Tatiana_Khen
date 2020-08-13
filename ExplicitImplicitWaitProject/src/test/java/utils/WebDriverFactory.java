@@ -1,4 +1,4 @@
-package manager;
+package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.MutableCapabilities;
@@ -18,14 +18,12 @@ public class WebDriverFactory {
         } else if (browserType.toUpperCase().equals(DriverType.FIREFOX.name())) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
-        }
-        else if (browserType.toUpperCase().equals(DriverType.HEADLESS.name())) {
+        } else if (browserType.toUpperCase().equals(DriverType.HEADLESS.name())) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
-        }
-        else if (browserType.toUpperCase().equals(DriverType.INCOGNITO.name())){
+        } else if (browserType.toUpperCase().equals(DriverType.INCOGNITO.name())) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--incognito");
@@ -38,38 +36,13 @@ public class WebDriverFactory {
             options.addArguments("--disable-default-apps");
             options.addArguments("test-type=browser");
             driver = new ChromeDriver(options);
-        }
-        else {
+        } else {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             System.out.println("======UNKNOWN driver " + browserType + "  is not supported. CHROME driver is created instead======");
         }
         return driver;
     }
-
-    public static WebDriver createNewDriver(String browserType, MutableCapabilities wdOptions) {
-        WebDriver driver;
-        if (browserType.toUpperCase().equals(DriverType.CHROME.name())) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver((ChromeOptions) wdOptions);
-        } else if (browserType.toUpperCase().equals(DriverType.FIREFOX.name())) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver((FirefoxOptions) wdOptions);
-        }
-        else if (browserType.toUpperCase().equals(DriverType.HEADLESS.name())) {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("headless");
-            driver = new ChromeDriver(options);
-        }
-        else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            System.out.println("======UNKNOWN driver " + browserType + "  is not supported. CHROME driver is created instead======");
-        }
-        return driver;
-    }
-
 
 }
 

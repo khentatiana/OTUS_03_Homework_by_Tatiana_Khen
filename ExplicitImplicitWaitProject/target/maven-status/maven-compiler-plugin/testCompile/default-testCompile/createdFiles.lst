@@ -1,0 +1,9 @@
+pages/YandexSearchResultPage.class
+tests/MobileTest02.class
+pages/YandexMobileHomePage.class
+pages/BasePage.class
+utils/BaseHooks.class
+utils/WebDriverFactory.class
+utils/DriverType.class
+tests/MobilePhonesTest.class
+pages/YandexComparePage.class
